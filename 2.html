@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+<!DOCTYPE html>
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<div id="controls">
+  <label>A : --auto-block-size <input type="number" data-unit="" value="20" step="10" /></label>
+</div>
+
+<pre><code class="js">
+registerLayout('sizing', class {
+  static get inputProperties() { return ['--auto-block-size'] }
+  *intrinsicSizes() { /* not yet implemented */ }
+
+  *layout(_, __, ___, styleMap) {
+    const autoBlockSize = parseInt(
+        styleMap.get('--auto-block-size'));
+
+    console.log(autoBlockSize);
+    return {autoBlockSize};
+  }
+});
+</code></pre>
+
+<pre><code class="html"></code></pre>
+
+<div id="wrapper">
+<layout id="A" style="display: layout(sizing);"></layout>
+</div>
+
+<script src="script.js"></script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+<!DOCTYPE html>
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<div id="controls">
+  <label>A : --aspect-ratio <input type="number" data-unit="" value="1" step="0.1" /></label>
+  <label>A : width <input type="number" data-unit="px" value="100" step="10" />px</label>
+</div>
+
+<pre><button>hide</button><code class="js">
+registerLayout('aspect', class {
+  static get inputProperties() { return ['--aspect-ratio'] }
+  *intrinsicSizes() { /* not yet implemented */ }
+
+  *layout(_, __, constraints, styleMap) {
+    const aspectRatio = parseFloat(
+        styleMap.get('--aspect-ratio'));
+
+    const autoBlockSize =
+        constraints.fixedInlineSize * aspectRatio;
+
+    return {autoBlockSize};
+  }
+});
+</code></pre>
+
+<pre><code class="html"></code></pre>
+
+<div id="wrapper">
+<layout id="A" style="display: layout(aspect);"></layout>
+</div>
+
+<script src="script.js"></script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+<!DOCTYPE html>
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<div id="controls">
+  <label>A - max-height <input type="number" data-unit="px" value="20" step="10" />px</label>
+</div>
+
+<pre><code class="js">
+registerLayout('sizing', class {
+  *intrinsicSizes() { /* not yet implemented */ }
+
+  *layout() {
+    return {autoBlockSize: 100};
+  }
+});
+</code></pre>
+
+<pre><code class="html"></code></pre>
+
+<div id="wrapper">
+<layout id="A" style="display: layout(sizing);"></layout>
+</div>
+
+<script src="script.js"></script>
