@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<style>
+layout { display: layout(child); }
+child { background-color: var(--color); width: 70px; }
+</style>
+<div id="controls">
+  <label>B : --inline-size <input type="number" data-unit="" value="100" step="10" /></label>
+  <label>B : --block-size <input type="number" data-unit="" value="100" step="10" /></label>
+</div>
+
+<pre><button>hide</button><code class="js">
+registerLayout('child', class {
+  static get inputProperties() { return [''] }
+  static get childInputProperties() { return ['--inline-size', '--block-size'] }
+
+  *intrinsicSizes() { /* not yet implemented */ }
+
+  *layout(children, _, constraints, ___) {
+    const [child] = children;
+
+    let fixedInlineSize = parseInt(child.styleMap.get('--inline-size'));
+    let fixedBlockSize = parseInt(child.styleMap.get('--block-size'));
+
+    if (fixedInlineSize < 0) fixedInlineSize = undefined;
+    if (fixedBlockSize < 0) fixedBlockSize = undefined;
+
+    const fragment = yield child.layoutNextFragment({
+      fixedInlineSize, fixedBlockSize
+    });
+
+    fragment.inlineOffset =
+        (constraints.fixedInlineSize - fragment.inlineSize) / 2;
+    fragment.blockOffset = 20;
+
+    const autoBlockSize = fragment.blockOffset + fragment.blockSize;
+
+    return {autoBlockSize, childFragments: [fragment]};
+  }
+});
+</code></pre>
+
+<pre><code class="html"></code></pre>
+
+<div id="wrapper">
+<layout id="A">
+  <child id="B">B</child>
+</layout>
+</div>
+
+<script src="script.js"></script>
